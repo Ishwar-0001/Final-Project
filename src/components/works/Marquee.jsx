@@ -1,33 +1,54 @@
-import React from "react";
+import { useEffect, useRef, useState } from "react";
 import CardMini from "./CardMini";
 
-export default function Marquee({ items, speed = 26 }) {
-  const reduced = typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+export default function Marquee({ items }) {
+  const trackRef = useRef(null);
+  const [duration, setDuration] = useState(18);
+  const [distance, setDistance] = useState(0);
+
+  useEffect(() => {
+    const update = () => {
+      if (!trackRef.current) return;
+
+      // total scroll width (half, because duplicated)
+      const totalWidth = trackRef.current.scrollWidth / 2;
+      setDistance(totalWidth);
+
+      const w = window.innerWidth;
+      if (w < 640) setDuration(25);       // 🔥 fast mobile
+      else if (w < 1024) setDuration(25); // tablet
+      else setDuration(25);               // desktop
+    };
+
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
+  }, [items]);
 
   return (
-    <div className="relative overflow-hidden w-full mb-8">
+    <div className="relative w-full overflow-hidden mb-10">
       <div
-        className="marquee-track flex gap-6 will-change-transform"
-        style={{ ["--marquee-duration"]: `${speed}s` }}
-        aria-hidden={reduced}
+        ref={trackRef}
+        className="flex gap-6 will-change-transform"
+        style={{
+          animation: `marquee ${duration}s linear infinite`,
+        }}
       >
         {[...items, ...items].map((item, i) => (
-          <div key={i} className="w-[320px] shrink-0">
+          <div
+            key={i}
+            className="w-[260px] sm:w-[300px] lg:w-[320px] shrink-0"
+          >
             <CardMini work={item} />
           </div>
         ))}
       </div>
 
       <style>{`
-        .marquee-track {
-          display:flex;
-          gap:24px;
-          transform: translateX(0);
-          animation: marquee var(--marquee-duration) linear infinite;
+        @keyframes marquee {
+          from { transform: translateX(0); }
+          to { transform: translateX(-${distance}px); }
         }
-        .marquee-track:hover, .marquee-track:active { animation-play-state: paused; }
-        @keyframes marquee { 0% { transform: translateX(0%); } 100% { transform: translateX(-50%); } }
-        @media (prefers-reduced-motion: reduce) { .marquee-track { animation: none !important; } }
       `}</style>
     </div>
   );
