@@ -70,7 +70,8 @@ export default function TestimonialsSection() {
 
       <div className="relative z-10 max-w-7xl mx-auto px-6">
 
-        <div className="text-center max-w-3xl mx-auto mb-14">
+        <div className="text-center max-w-3xl mx-auto mb-14 mt-0">
+
           <h2 className="font-[Urbanist] font-extrabold text-3xl md:text-4xl text-[rgb(12,12,12)]">
             What Our Clients Say
           </h2>
@@ -80,7 +81,8 @@ export default function TestimonialsSection() {
         </div>
 
         {!showAll && (
-          <div className="relative overflow-hidden">
+          <div className="relative overflow-visible">
+
             <div className="flex gap-6 animate-marquee will-change-transform"
                  style={{ animationDuration: window.innerWidth < 640 ? "12s" : "22s" }}>
               {[...REVIEWS, ...REVIEWS, ...REVIEWS].map((review, i) => (

@@ -2,6 +2,7 @@ import { Check } from "lucide-react";
 
 function FeatureCard({ title }) {
   return (
+    
     <div
       className="group relative flex items-start gap-4
                  bg-[rgb(244,244,244)]
@@ -57,7 +58,8 @@ export default function WhyChooseUs() {
     <section className="relative w-full bg-white py-16 overflow-hidden">
       
       {/* Decorative blur — pushed DOWN so heading stays clean */}
-      <div className="absolute inset-x-0 bottom-0 pointer-events-none">
+      <div className="absolute inset-x-0 bottom-0 pointer-events-none hidden md:block">
+
         <div
           className="absolute bottom-0 right-1/3
                      w-[360px] h-[360px]
