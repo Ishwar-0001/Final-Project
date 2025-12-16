@@ -1,72 +1,90 @@
-// ContactHero.jsx
-import React from "react";
-
-/**
- * Hero area + floating contact card (left column)
- * - Uses exact layout and spacing from image (approx values)
- * - Uses Tailwind arbitrary color values to match image
- */
-
-const ContactHero = () => {
+function StatCard({ value, label }) {
   return (
-    <section className="w-full bg-[#F2F6FF]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-[36px] md:py-[48px] lg:py-[64px]">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
-          {/* Left: big hero card */}
+    <div
+      className="group relative bg-[rgb(244,244,244)]
+                 rounded-2xl px-6 py-5 text-center
+                 transition-all duration-300
+                 hover:bg-[rgb(12,12,12)]
+                 hover:-translate-y-1
+                 hover:shadow-[0_20px_50px_rgba(0,0,0,0.15)]"
+    >
+      <div className="text-2xl font-extrabold text-[#53aaa4]">
+        {value}
+      </div>
+      <p className="mt-1 text-sm text-[#4A4A4A] group-hover:text-white/80">
+        {label}
+      </p>
+    </div>
+  );
+}
+
+export default function ContactHero() {
+  return (
+    <section className="relative w-full overflow-hidden bg-white">
+
+      {/* Decorative background */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute -top-32 -right-32 w-96 h-96 bg-[#53aaa4]/40 rounded-full blur-[120px]" />
+        <div className="absolute bottom-0 -left-40 w-96 h-96 bg-[#53aaa4]/40 rounded-full blur-[120px]" />
+      </div>
+
+      <div className="relative z-10 max-w-7xl mx-auto px-6 py-20">
+
+        {/* HERO GRID */}
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
+
+          {/* LEFT CONTENT */}
+          <div>
+            
+            <h1 className="font-[Urbanist] text-3xl md:text-4xl lg:text-5xl
+                           font-extrabold leading-tight text-[rgb(12,12,12)]">
+              Let’s build something
+              <span className="block text-[#53aaa4] mt-1">
+                meaningful together
+              </span>
+            </h1>
+
+            <p className="mt-5 max-w-md text-sm md:text-base
+                          text-[#4A4A4A] font-inter">
+              Share your idea, goal or challenge.  
+              Our team usually responds within 24 hours with clear next steps.
+            </p>
+
+            {/* subtle CTA hint */}
+            <div className="mt-6 flex items-center gap-3 text-sm text-[#4A4A4A]">
+              <span className="h-px w-10 bg-[#53aaa4]" />
+              <span>Fill the form below to get started</span>
+            </div>
+          </div>
+
+          {/* RIGHT VISUAL COLUMN */}
           <div className="relative">
-            <div
-              className="rounded-2xl p-10 md:p-12"
-              style={{
-                background: "linear-gradient(180deg,#6C4BFF 0%, #4BB0FF 100%)",
-                boxShadow: "0 10px 30px rgba(108,75,255,0.12)",
-              }}
-            >
-              <h1 className="font-inter font-semibold text-[36px] md:text-[44px] lg:text-[56px] text-white leading-tight">
-                Let's Start a Conversation
-              </h1>
 
-              <p className="mt-4 text-[#0B1A2B] text-base md:text-lg max-w-xl">
-                Reach out to us — enter your details and we'll reply quickly.
-              </p>
+            {/* Decorative vertical line */}
+            <div className="absolute -left-6 top-0 h-full w-px bg-[#53aaa4]/30 hidden lg:block" />
 
-              {/* Floating particles upper-right (decorative) */}
-              <div className="absolute -top-4 -right-4 w-40 h-40 opacity-60 pointer-events-none">
-                {/* Decorative bubbles as CSS gradients */}
-                <div className="w-full h-full rounded-full" style={{
-                  background: "radial-gradient(circle at 20% 30%, rgba(201,231,255,0.6), rgba(199,150,255,0.25) 40%, transparent 60%)"
-                }} />
-              </div>
+            {/* Stats Cards */}
+            <div className="grid grid-cols-2 gap-4">
+              <StatCard value="500+" label="Projects Completed" />
+              <StatCard value="98%" label="Client Satisfaction" />
+              <StatCard value="24/7" label="Support Available" />
+              <StatCard value="10+ Years" label="Industry Experience" />
             </div>
 
-            {/* Floating glass contact form card - centered over bottom of hero */}
-            <div className="absolute left-1/2 transform -translate-x-1/2 translate-y-1/2 w-[320px] md:w-[360px] lg:w-[420px]">
-              <div className="backdrop-blur-md bg-[rgba(255,255,255,0.85)] border border-[rgba(0,0,0,0.06)] rounded-[18px] p-4 md:p-6 shadow-lg">
-                <div className="text-sm font-inter text-[#0B1A2B] font-medium mb-2">Contact Form Section</div>
-                <input className="w-full rounded-[10px] px-3 py-2 mb-2 text-[#0B1A2B] placeholder:text-[#A1ABC0] bg-[#ffffff] border border-[rgba(0,0,0,0.04)]" placeholder="Name" />
-                <input className="w-full rounded-[10px] px-3 py-2 mb-2 text-[#0B1A2B] placeholder:text-[#A1ABC0] bg-[#ffffff] border border-[rgba(0,0,0,0.04)]" placeholder="Email Address" />
-                <input className="w-full rounded-[10px] px-3 py-2 mb-2 text-[#0B1A2B] placeholder:text-[#A1ABC0] bg-[#ffffff] border border-[rgba(0,0,0,0.04)]" placeholder="Phone Number" />
-                <textarea rows="4" className="w-full rounded-[10px] px-3 py-2 mb-3 text-[#0B1A2B] placeholder:text-[#A1ABC0] bg-[#ffffff] border border-[rgba(0,0,0,0.04)]" placeholder="Your Message" />
-                <button className="w-full py-3 rounded-[12px] text-white font-semibold text-base"
-                  style={{
-                    background: "linear-gradient(90deg,#7BE0FF 0%, #C792FF 100%)",
-                    boxShadow: "0 6px 18px rgba(124,185,255,0.28)"
-                  }}
-                >
-                  Send Message
-                </button>
-              </div>
-            </div>
+            {/* floating accent */}
+            <div className="absolute -bottom-10 right-6
+                px-4 py-1.5 rounded-full
+                text-xs tracking-widest uppercase
+                text-[#53aaa4]
+                bg-white/70 backdrop-blur
+                shadow-sm">
+  Trusted Worldwide
+</div>
+
           </div>
 
-          {/* Right column is left blank here (in image contains right-side vertical stack) */}
-          <div className="hidden lg:block" aria-hidden>
-            {/* empty placeholder to keep grid spacing identical */}
-            <div className="h-[420px]" />
-          </div>
         </div>
       </div>
     </section>
   );
-};
-
-export default ContactHero;
+}
