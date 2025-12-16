@@ -2,16 +2,24 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import CardMini from "./CardMini";
 import Marquee from "./Marquee";
+import work1 from "../../assets/work1.png"
+import work2 from "../../assets/work2.png"
+import work3 from "../../assets/work3.png"
+import work4 from "../../assets/work4.png"
+import work5 from "../../assets/work5.png"
+import work6 from "../../assets/work6.png"
+import work7 from "../../assets/work7.png"
+import work8 from "../../assets/work8.png"
 
 const WORKS = [
-  { id: 1, client: "Aurora Tech", location: "Pune, Maharashtra", image: "/images/project-aurora.jpg", href: "#" },
-  { id: 2, client: "Bluewave Retail", location: "Jaipur, Rajasthan", image: "/images/project-bluewave.jpg", href: "#" },
-  { id: 3, client: "Crest Logistics", location: "Guwahati, Assam", image: "/images/project-crest.jpg", href: "#" },
-  { id: 4, client: "Dharma Foods", location: "Lucknow, Uttar Pradesh", image: "/images/project-dharma.jpg", href: "#" },
-  { id: 5, client: "Elara Health", location: "Bengaluru, Karnataka", image: "/images/project-elara.jpg", href: "#" },
-  { id: 6, client: "Fable Media", location: "Kolkata, West Bengal", image: "/images/project-fable.jpg", href: "#" },
-  { id: 7, client: "Greenfield Farms", location: "Indore, Madhya Pradesh", image: "/images/project-greenfield.jpg", href: "#" },
-  { id: 8, client: "Horizon Finance", location: "Mumbai, Maharashtra", image: "/images/project-horizon.jpg", href: "#" },
+  { id: 1, client: "Aurora Tech", location: "Pune, Maharashtra", image: work1, href: "#" },
+  { id: 2, client: "Bluewave Retail", location: "Jaipur, Rajasthan", image: work2, href: "#" },
+  { id: 3, client: "Crest Logistics", location: "Guwahati, Assam", image: work3, href: "#" },
+  { id: 4, client: "Dharma Foods", location: "Lucknow, Uttar Pradesh", image: work4, href: "#" },
+  { id: 5, client: "Elara Health", location: "Bengaluru, Karnataka", image: work5, href: "#" },
+  { id: 6, client: "Fable Media", location: "Kolkata, West Bengal", image: work6, href: "#" },
+  { id: 7, client: "Greenfield Farms", location: "Indore, Madhya Pradesh", image: work7, href: "#" },
+  { id: 8, client: "Horizon Finance", location: "Mumbai, Maharashtra", image: work8, href: "#" },
 ];
 
 export default function WorksGrid({ works = null }) {
